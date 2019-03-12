@@ -1,0 +1,11 @@
+server:
+  port: 8013
+
+spring:
+  application:
+    name: api-service-demo-thirdly
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/

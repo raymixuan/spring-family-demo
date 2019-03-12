@@ -11,6 +11,8 @@
     <modules>
         <module>cloud-eureka</module>
         <module>api-service-demo</module>
+        <module>api-serivce-demo-second</module>
+        <module>api-service-demo-thirdly</module>
     </modules>
 
     <repositories>
