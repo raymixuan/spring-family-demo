@@ -10,9 +10,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>cloud-eureka</module>
-        <module>api-service-demo</module>
-        <module>api-serivce-demo-second</module>
-        <module>api-service-demo-thirdly</module>
+        <module>account-info-service</module>
+        <module>customer-info-service</module>
+        <module>user-info-service</module>
+        <module>simple-demo</module>
     </modules>
 
     <repositories>
