@@ -1,11 +1,13 @@
 package cn.oldriver.controller;
 
-import cn.oldriver.common.exception.BaseException;
 import cn.oldriver.common.exception.user.UserInfoException;
 import cn.oldriver.common.statuscode.user.UserStatusCode;
+import cn.oldriver.entity.bo.CustomerBO;
+import cn.oldriver.entity.bo.FullUserInfo;
 import cn.oldriver.entity.bo.UserInfoBO;
 import cn.oldriver.entity.vo.ResponseVO;
-import cn.oldriver.service.UserInfoService;
+import cn.oldriver.service.ICustomerService;
+import cn.oldriver.service.impl.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,9 @@ public class UserInfoController {
 
     @Autowired
     private UserInfoService userInfoService;
+
+    @Autowired
+    private ICustomerService iCustomerService;
 
     @RequestMapping(method = RequestMethod.GET,
     path = "/{billId}/info")
@@ -47,4 +52,20 @@ public class UserInfoController {
         return respVO;
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/{billId}/info/full")
+    public ResponseVO<FullUserInfo> queryUserFullInfo(@PathVariable("billId") String billId) {
+        ResponseVO<FullUserInfo> respVO = new ResponseVO<>();
+        FullUserInfo fullUserInfo = new FullUserInfo();
+
+        ResponseVO<UserInfoBO> userInfo = this.queryUserInfo(billId);
+        ResponseVO<CustomerBO> customerBO = this.iCustomerService.getCustomerInfoByCustId(billId);
+
+        fullUserInfo.setCustomer(customerBO.getObj());
+        fullUserInfo.setUserInfo(userInfo.getObj());
+
+        respVO.setCode("0");
+        respVO.setObj(fullUserInfo);
+
+        return respVO;
+    }
 }

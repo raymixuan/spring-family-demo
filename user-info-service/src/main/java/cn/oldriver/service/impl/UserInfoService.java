@@ -1,4 +1,4 @@
-package cn.oldriver.service;
+package cn.oldriver.service.impl;
 
 import cn.oldriver.common.exception.user.UserInfoException;
 import cn.oldriver.dao.user.UserInfoDAO;
